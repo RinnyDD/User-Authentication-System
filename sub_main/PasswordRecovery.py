@@ -68,7 +68,7 @@ class UserManager:
                 print("Password is not strong enough. Registration failed.")
 
 def main():
-    manager = UserManager('usersecrect.txt')
+    manager = UserManager('database_for_user.txt')
     identifier = input("Enter your username or phone number: ")
 
     if manager.is_user_exist(identifier):
