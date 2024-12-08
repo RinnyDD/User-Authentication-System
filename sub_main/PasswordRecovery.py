@@ -67,19 +67,16 @@ class UserManager:
             else:
                 print("Password is not strong enough. Registration failed.")
 
-def main():
-    manager = UserManager('database_for_user.txt')
-    identifier = input("Enter your username or phone number: ")
+# Create UserManager object and handle user actions directly
+manager = UserManager('database_for_user.txt')
+identifier = input("Enter your username or phone number: ")
 
-    if manager.is_user_exist(identifier):
-        manager.set_password(identifier)
+if manager.is_user_exist(identifier):
+    manager.set_password(identifier)
+else:
+    print("User not found. Would you like to register?")
+    choice = input("Enter 'yes' to register or 'no' to exit: ").lower()
+    if choice == 'yes':
+        manager.register_user()
     else:
-        print("User not found. Would you like to register?")
-        choice = input("Enter 'yes' to register or 'no' to exit: ").lower()
-        if choice == 'yes':
-            manager.register_user()
-        else:
-            print("Goodbye!")
-
-if __name__ == "__main__":
-    main()
+        print("Goodbye!")
