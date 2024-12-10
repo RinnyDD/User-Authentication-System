@@ -3,8 +3,8 @@ import maskpass
 import os
 import time
 
-COOLDOWN_TIME_LOGIN = 6
-COOLDOWN_TIME_CODE = 1
+COOLDOWN_TIME_LOGIN = 60
+COOLDOWN_TIME_CODE = 30
 MAX_ATTEMPTS = 3
 
 class Login:
@@ -115,7 +115,7 @@ class Login:
                     print("!!! Wrong code !!!")
                     
             while verify_code != code:
-                choices = input("Do you want to [retype] or [resend] the code ? --> ").strip().lower()
+                choices = input("Do you want to [retype], [resend] or [leave] the code ? --> ").strip().lower()
         
                 if choices =='resend' or choices == 'rs':
                     code = self.generate_random_code()
@@ -124,7 +124,8 @@ class Login:
                     attempts_code_retype = 0    
                     if verify_code != code:
                         if attempts_code_resend == MAX_ATTEMPTS - 1:
-                            print("Too many wrong code, you no longer can login to your account. Due to bruce force attack, we will ban you in a short time !")
+                            print("Too many wrong code, you cannot login to your account.")
+                            print("Try again next time, Good luck !")
                             break   
                         print("Please wait before trying again.")
                         attempts_code_resend += 1
@@ -162,8 +163,12 @@ class Login:
                             break
                     
                     elif attempts_code_retype == 3:
-                        print("Too many wrong code, you no longer can login to your account. Due to bruce force attack, we will ban you in a short time !")
-                        break 
+                        print("Too many wrong code, you can't login to your account.")
+                        print("Please resend the code and try again !")
+    
+                elif choices == 'leave' or choices == 'l':
+                    print("Thank you for using my service, Have a good day ! ")
+                    break
                 else:
                     print("Invalid choice! Please choose the correct choice.")
                     
