@@ -108,7 +108,7 @@ class UserRegisteration(User):
         try:
             script_directory = os.path.dirname(os.path.abspath(__file__))
             os.chdir(script_directory)
-            file_name = "Muy.txt"
+            file_name = "database.txt"
             if os.path.exists(file_name):
                 with open(file_name, 'r') as file:
                     try:
@@ -165,7 +165,7 @@ class UserRegisteration(User):
         try:
             script_directory = os.path.dirname(os.path.abspath(__file__))
             os.chdir(script_directory)
-            file_name = "Muy.txt"
+            file_name = "database.txt"
             
             if os.path.exists(file_name):
                 with open(file_name, "r") as file:
