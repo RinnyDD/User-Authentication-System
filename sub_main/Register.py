@@ -45,6 +45,14 @@ class UserRegisteration(User):
         #Username with attempt
         while Attempt < Max_Attempts:
             self.username = input("Username: ").strip()
+            if not self.username:
+                print("Error: Username cannot be empty.")
+                Attempt += 1
+                print(f"Attempts remaining: {Max_Attempts - Attempt}")
+                if Attempt >= Max_Attempts:
+                    print("Too many attempts. Registration failed.")
+                    return
+                continue
             if self.check_duplicate_username(self.username):
                 Attempt += 1
                 print("Username already taken, please choose a different one.")
