@@ -1,0 +1,9 @@
+[
+    {
+        "firstname": "Aphinun",
+        "lastname": "ROmnea",
+        "username": "APN",
+        "phone": "+855 17634646",
+        "password": "jhdhhdaJkal1!"
+    }
+]

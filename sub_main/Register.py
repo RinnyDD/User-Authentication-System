@@ -1,5 +1,7 @@
 import os
 import json
+from Encrytions import encrypt_data, load_or_generate_key 
+
 
 Max_Attempts = 3
 Attempt = 0
@@ -45,14 +47,6 @@ class UserRegisteration(User):
         #Username with attempt
         while Attempt < Max_Attempts:
             self.username = input("Username: ").strip()
-            if not self.username:
-                print("Error: Username cannot be empty.")
-                Attempt += 1
-                print(f"Attempts remaining: {Max_Attempts - Attempt}")
-                if Attempt >= Max_Attempts:
-                    print("Too many attempts. Registration failed.")
-                    return
-                continue
             if self.check_duplicate_username(self.username):
                 Attempt += 1
                 print("Username already taken, please choose a different one.")
@@ -114,7 +108,7 @@ class UserRegisteration(User):
         try:
             script_directory = os.path.dirname(os.path.abspath(__file__))
             os.chdir(script_directory)
-            file_name = "database.txt"
+            file_name = "Muy.txt"
             if os.path.exists(file_name):
                 with open(file_name, 'r') as file:
                     try:
@@ -156,19 +150,22 @@ class UserRegisteration(User):
         #Use for remove all the space and phone number store like '+855 11123456'
         formatted_phone = self.phone[4:].replace(" ", "")
         Phone = "+855 " + formatted_phone
+        key = load_or_generate_key()
+        cipher = encrypt_data(key)
+        
 
         user_data = {
             'firstname': self.firstname,
             'lastname': self.lastname,
             'username': self.username,
             'phone': Phone,
-            'password': self.get_password()
+            'password': cipher.encrypt(self.get_password().encode()).decode()
         }
 
         try:
             script_directory = os.path.dirname(os.path.abspath(__file__))
             os.chdir(script_directory)
-            file_name = "database.txt"
+            file_name = "Muy.txt"
             
             if os.path.exists(file_name):
                 with open(file_name, "r") as file:
