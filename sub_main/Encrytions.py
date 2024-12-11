@@ -16,4 +16,6 @@ def load_or_generate_key(key_file="pw.key"):
 
 def encrypt_data(key):
     return Fernet(key)
+
+        
         
