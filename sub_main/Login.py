@@ -7,7 +7,7 @@ COOLDOWN_TIME_LOGIN = 60
 COOLDOWN_TIME_CODE = 30
 MAX_ATTEMPTS = 3
 
-class Login:
+class UserLogin:
     def __init__(self, database="register_user.txt"):
         script_directory = os.path.dirname(os.path.abspath(__file__))
         self.database = os.path.join(script_directory, database)
