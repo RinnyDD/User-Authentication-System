@@ -1,0 +1,2 @@
+{'firstname': 'nak', 'lastname': 'nak', 'username': 'nak', 'phone': '+855 123456789', 'password': 'N@kk012345678'}
+{'firstname': 'ma', 'lastname': 'ma', 'username': 'mama', 'phone': '+855 12345678', 'password': 'M@MaA12345678'}
