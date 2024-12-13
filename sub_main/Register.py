@@ -1,24 +1,19 @@
+import sys
 import os
+ 
+
+# Add the modules folder to sys.path
+sys.path.append(os.path.abspath(r"D:\Vs python\github user\User-Authentication-System\modules"))
+
+# Now import the User class from base_register
+from base_register import User
 import json
+import os
 from Encrytions import encrypt_data, load_or_generate_key 
 
 
 Max_Attempts = 3
 Attempt = 0
-
-class User:
-    def __init__(self, firstname = None, lastname = None, username = None, phone = None, password = None):
-        self.firstname = firstname
-        self.lastname = lastname
-        self.username = username
-        self.phone = phone
-        self.__password = password
-
-    def set_password(self, password):
-        self.__password = password
-
-    def get_password(self):
-        return self.__password
 
 class UserRegisteration(User):
     def __init__(self):
@@ -108,7 +103,7 @@ class UserRegisteration(User):
         try:
             script_directory = os.path.dirname(os.path.abspath(__file__))
             os.chdir(script_directory)
-            file_name = "database.txt"
+            file_name = r"D:\Vs python\github user\User-Authentication-System\main\database.txt"
             if os.path.exists(file_name):
                 with open(file_name, 'r') as file:
                     try:
@@ -165,7 +160,7 @@ class UserRegisteration(User):
         try:
             script_directory = os.path.dirname(os.path.abspath(__file__))
             os.chdir(script_directory)
-            file_name = "database.txt"
+            file_name = r"D:\Vs python\github user\User-Authentication-System\main\database.txt"
             
             if os.path.exists(file_name):
                 with open(file_name, "r") as file:
