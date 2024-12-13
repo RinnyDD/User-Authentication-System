@@ -2,13 +2,16 @@ import random
 import maskpass
 import os
 import time
+import sys
+
+sys.path.append(os.path.abspath(r"..\Python In CyberSecurity\ProposalProject\User-Authentication-System\main"))
 
 COOLDOWN_TIME_LOGIN = 60
 COOLDOWN_TIME_CODE = 30
 MAX_ATTEMPTS = 3
 
 class UserLogin:
-    def __init__(self, database="register_user.txt"):
+    def __init__(self, database="database.txt"):
         script_directory = os.path.dirname(os.path.abspath(__file__))
         self.database = os.path.join(script_directory, database)
 
@@ -167,7 +170,7 @@ class UserLogin:
                         print("Please resend the code and try again !")
     
                 elif choices == 'leave' or choices == 'l':
-                    print("Thank you for using my service, Have a good day ! ")
+                    print("Thank you for using our service, Have a good day ! ")
                     break
                 else:
                     print("Invalid choice! Please choose the correct choice.")
@@ -175,5 +178,5 @@ class UserLogin:
             return
 
 # Create an instance of the Login class and call the login process
-login_system = Login()
+login_system = UserLogin()
 login_system.login()
