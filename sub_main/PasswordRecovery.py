@@ -92,6 +92,7 @@ def register():
         else:
             break
 
+
     # Prompt user to set a strong password
     attempts = 0
     while attempts < 3:
