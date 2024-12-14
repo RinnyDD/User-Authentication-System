@@ -8,7 +8,7 @@ from base_register import User
 
 
 class UserManager:
-    def __init__(self, filename=r"User-Authentication-System/main/database.txt"):
+    def __init__(self, filename=r"main/database.txt"):
        self.filename = filename
        self.users = self.load_users()
     def load_users(self):
