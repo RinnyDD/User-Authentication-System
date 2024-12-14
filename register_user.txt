@@ -1,1 +1,0 @@
-{"username": "nak", "first_name": "nakk", "last_name": "akkk", "phone": "039393939393", "password": "@naK0fks0f8uryew244345"}

@@ -182,5 +182,4 @@ class UserRegisteration(User):
         except OSError as e:
                 print(f"Error saving user data: {e}")
 
-test_re = UserRegisteration()
-test_re.user_register()
+
