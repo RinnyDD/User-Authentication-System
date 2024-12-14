@@ -2,23 +2,26 @@ import os
 import sys
 import json
 import re
-sys.path.append(os.path.abspath(r"User-Authentication-System/modules"))
+sys.path.append(os.path.abspath(r"C:\Users\USER\Desktop\Python for CS\week8\User-Authentication-System\modules"))
 from Register import UserRegisteration  # Importing the register function from Register.py
 from base_register import User
 
 
 class UserManager:
-    def __init__(self, filename=r"main/database.txt"):
+    def __init__(self, filename=(r"C:\Users\USER\Desktop\Python for CS\week8\User-Authentication-System\main\database.txt")):
        self.filename = filename
        self.users = self.load_users()
     def load_users(self):
         users = {}
         if os.path.exists(self.filename):
             with open(self.filename, "r") as file:
-                for line in file:
-                    user_data = json.loads(line.strip())
-                    username = user_data["username"]
-                    users[username] = user_data
+                try:
+                    data = json.load(file)  # Load the entire JSON array
+                    for user_data in data:
+                        username = user_data["username"]
+                        users[username] = user_data
+                except json.JSONDecodeError as e:
+                    print(f"Error reading the user data: {e}")
         return users
 
     def is_user_exist(self, identifier):
@@ -63,12 +66,14 @@ class UserManager:
 
     def save_users(self):
         with open(self.filename, "w") as file:
-            for user in self.users.values():
-                file.write(json.dumps(user) + "\n")
+            # Write the entire list of users as a JSON array
+            json.dump(list(self.users.values()), file, indent=4)
+
+
 
 # Define the PasswordRecovery function
 def PasswordRecovery():
-    manager = UserManager('register_user.txt')
+    manager = UserManager(r"C:\Users\USER\Desktop\Python for CS\week8\User-Authentication-System\main\database.txt")
     attempts = 0
 
     while attempts < 3:
@@ -81,6 +86,7 @@ def PasswordRecovery():
         else:
             print("User not found.")
             choice = input("Would you like to [register], [retype], or [leave]? ").strip().lower()
+
 
             if choice == 'leave':
                 print("You have returned to the main page.")
@@ -95,9 +101,9 @@ def PasswordRecovery():
             else:
                 print("Invalid choice. Please enter 'register', 'retype', or 'leave'.")
 
+
     print("Too many failed attempts. Returning to the main page.")
     print("You have returned to the main page.")
 
 # Call PasswordRecovery function to test
 PasswordRecovery()
-
